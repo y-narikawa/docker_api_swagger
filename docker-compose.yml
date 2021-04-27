@@ -1,0 +1,21 @@
+version: "3"
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./hiyoko:/usr/share/nginx/html/hiyoko
+    # ベースYAML
+    # environment:
+    #   API_URL: ./hiyoko/doc.yaml
+    ports:
+      - "8001:8080"
+
+  redoc:
+    image: redocly/redoc
+    volumes:
+      - ./hiyoko:/usr/share/nginx/html/hiyoko
+    environment:
+      SPEC_URL: ./hiyoko/openapi-doc.yaml
+      PORT: 8080
+    ports:
+      - "8002:8080"
